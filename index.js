@@ -16,7 +16,7 @@ module.exports = {
         else return fetch(process.env.REPLIT_DB_URL + "/" + key)
             .then((e) => e.text())
         .then((strValue) => {
-            if (options && options.raw) return strValue;
+            if (ops && ops.raw) return strValue;
                 if (!strValue) return null;
             try {
                 var value = JSON.parse(strValue);
@@ -134,9 +134,9 @@ var methods = {
         let fetched = db.prepare(`SELECT * FROM ${options.table} WHERE ID = (?)`).get(params.id);
         if (!fetched) return null;
         try { 
-            fetched = JSON.parse(fetched) 
+            fetched = JSON.parse(fetched.json)
         } catch (e) {
-            fetched = fetched;
+            fetched = fetched.json;
         }
         if (params.ops.target) fetched = get(fetched, params.ops.target);
         return fetched;
