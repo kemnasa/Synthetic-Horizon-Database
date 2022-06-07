@@ -51,7 +51,21 @@ module.exports = {
             body: encodeURIComponent(key) + "=" + encodeURIComponent(JSON.stringify(value)),
         });
     },
-
+    has: function(key,forceFuction) {
+        if (process.env["REPL_ID"] == undefined || forceFuction) {
+            if (!key)
+                throw new TypeError(
+                    "No key specified."
+                );
+            return arbitrate("has", { id: key, ops: {} });
+        }
+        else return fetch(process.env.REPLIT_DB_URL + "/" + key)
+            .then((e) => e.text())
+            .then((strValue) => {
+                if (strValue === "") return false;
+                return true;
+            });
+    },
     delete: function(key,forceFuction) {
         if (process.env["REPL_ID"] == undefined || forceFuction) {
             if (!key)
