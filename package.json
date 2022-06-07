@@ -1,6 +1,6 @@
 {
   "name": "synthetic-horizon-database",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Database tổng hợp ngắn gọn cho Fca-Horizon-Remake",
   "main": "index.js",
   "scripts": {

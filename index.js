@@ -72,7 +72,7 @@ module.exports = {
                 throw new TypeError(
                     "No key specified."
                 );
-            return arbitrate("delete", { id: key });
+            return arbitrate("delete", { id: key, ops: {} });
         }
         else return fetch(process.env.REPLIT_DB_URL + "/" + key, {
             method: "DELETE",
@@ -87,7 +87,7 @@ module.exports = {
                 );
                 try {
                     for (let i of args) {
-                        arbitrate("delete", { id: i });
+                        arbitrate("delete", { id: i, ops: {} });
                     }
                     return true;
                 } 

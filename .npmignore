@@ -1,4 +1,4 @@
-.sqlite
+SyntheticDatabase.sqlite
 package-lock.json
 .eslintrc.js
 .eslintrc.yaml
