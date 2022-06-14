@@ -126,7 +126,7 @@ module.exports = {
 
     list: async function(forceFuction) {
         if (process.env["REPL_ID"] == undefined || forceFuction) {
-            return arbitrate("all");
+            return arbitrate("all",{ ops: {} });
         }
         else {
             return fetch(
@@ -345,7 +345,7 @@ var methods = {
 };
 
 function arbitrate(method, params, tableName) {
-    let options = {table: (tableName || params.ops.table || "json")};
+    let options = {table: "json"};
     db.prepare(`CREATE TABLE IF NOT EXISTS ${options.table} (ID TEXT, json TEXT)`).run();
     if (params.ops.target && params.ops.target[0] === ".") params.ops.target = params.ops.target.slice(1); // Remove prefix if necessary
     if (params.data && params.data === Infinity) throw new TypeError(`You cannot set Infinity into the database @ ID: ${params.id}`);
